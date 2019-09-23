@@ -16,7 +16,17 @@ export default {
   }),
   created() {
     let winners = localStorage.getItem("winners");
-    this.winners = JSON.parse(winners);
+    winners = JSON.parse(winners);
+    winners.sort((a, b) => {
+      if (a.time < b.time) {
+        return 1;
+      }
+      if (a.time > b.time) {
+        return -1;
+      }
+      return 0;
+    });
+    this.winners = winners;
   }
 };
 </script>
